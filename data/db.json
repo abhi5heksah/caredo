@@ -159,6 +159,19 @@
   ],
   "appointments": [
     {
+      "doctor_id": "doc-1",
+      "doctor_name": "Dr. Sanket Gidmare",
+      "patient_name": "Rahul Sharma",
+      "patient_phone": "+91 98765 00001",
+      "patient_email": "patient@caredo.in",
+      "slot_date": "2026-11-05",
+      "slot_time": "11:30 AM",
+      "reason": "Tooth cleaning and polish",
+      "status": "confirmed",
+      "id": "CRD-366373",
+      "created_at": "2026-10-28T18:28:33.411Z"
+    },
+    {
       "id": "CRD-842911",
       "doctor_id": "doc-1",
       "doctor_name": "Dr. Sanket Gidmare",
