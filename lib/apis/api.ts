@@ -1,5 +1,6 @@
 import {createClient} from "@/lib/supabase/client";
 import {Database, TablesInsert} from "@/types/database";
+import { db } from "@/lib/db";
 
 const supabase = createClient();
 
@@ -37,29 +38,136 @@ export const createDoctorProfile = async (profile:TablesInsert<'doctor_profiles'
 }
 
 
-export const fetchAllDoctorProfiles = async () => {
-    const { data, error } = await supabase
-        .from('doctor_profiles')
-        .select('*')
+export const MOCK_DOCTORS = [
+    {
+        user_id: "doc-1",
+        full_name: "Dr. Sanket Gidmare",
+        bio: "Experienced Dental Surgeon & Aesthetic Consultant with 10+ years of clinical excellence.",
+        clinic_address: "Ayodhya Nagar, Sakkardhara, Nagpur",
+        phone: "+91 98765 43210",
+        photo_url: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80",
+        area_id: 1,
+        specialty_id: 1,
+        subscription_active: true,
+        subscription_start: null,
+        subscription_end: null,
+        search_vector: null,
+        created_at: new Date().toISOString(),
+    },
+    {
+        user_id: "doc-2",
+        full_name: "Dr. Priya Sharma",
+        bio: "Senior Interventional Cardiologist specializing in preventive heart health and diagnostics.",
+        clinic_address: "Dhantoli Medical Enclave, Nagpur",
+        phone: "+91 98765 43211",
+        photo_url: "https://images.unsplash.com/photo-1594824813589-9159045fa787?w=400&auto=format&fit=crop&q=80",
+        area_id: 2,
+        specialty_id: 2,
+        subscription_active: true,
+        subscription_start: null,
+        subscription_end: null,
+        search_vector: null,
+        created_at: new Date().toISOString(),
+    },
+    {
+        user_id: "doc-3",
+        full_name: "Dr. Rajesh Verma",
+        bio: "Pediatrician & Neonatologist dedicated to comprehensive child health and growth monitoring.",
+        clinic_address: "Ramdaspeth Central Clinic, Nagpur",
+        phone: "+91 98765 43212",
+        photo_url: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&auto=format&fit=crop&q=80",
+        area_id: 3,
+        specialty_id: 3,
+        subscription_active: true,
+        subscription_start: null,
+        subscription_end: null,
+        search_vector: null,
+        created_at: new Date().toISOString(),
+    },
+    {
+        user_id: "doc-4",
+        full_name: "Dr. Ananya Deshmukh",
+        bio: "Consultant Dermatologist & Cosmetologist specializing in skin rejuvenating and clinical care.",
+        clinic_address: "Dharampeth Main Road, Nagpur",
+        phone: "+91 98765 43213",
+        photo_url: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&auto=format&fit=crop&q=80",
+        area_id: 4,
+        specialty_id: 4,
+        subscription_active: true,
+        subscription_start: null,
+        subscription_end: null,
+        search_vector: null,
+        created_at: new Date().toISOString(),
+    },
+    {
+        user_id: "doc-5",
+        full_name: "Dr. Vikram Joshi",
+        bio: "Chief Orthopedic Surgeon with expertise in joint replacements and sports medicine.",
+        clinic_address: "Sitabuldi Square, Nagpur",
+        phone: "+91 98765 43214",
+        photo_url: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&auto=format&fit=crop&q=80",
+        area_id: 5,
+        specialty_id: 5,
+        subscription_active: true,
+        subscription_start: null,
+        subscription_end: null,
+        search_vector: null,
+        created_at: new Date().toISOString(),
+    },
+    {
+        user_id: "doc-6",
+        full_name: "Dr. Neha Patel",
+        bio: "Obstetrician & Gynecologist offering high-risk pregnancy care and laparoscopic surgery.",
+        clinic_address: "Civil Lines, Nagpur",
+        phone: "+91 98765 43215",
+        photo_url: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&auto=format&fit=crop&q=80",
+        area_id: 6,
+        specialty_id: 6,
+        subscription_active: true,
+        subscription_start: null,
+        subscription_end: null,
+        search_vector: null,
+        created_at: new Date().toISOString(),
+    },
+    {
+        user_id: "doc-7",
+        full_name: "Dr. Amit Kulkarni",
+        bio: "Consultant Neurologist focusing on stroke rehabilitation, migraines, and neurological care.",
+        clinic_address: "Wardha Road, Nagpur",
+        phone: "+91 98765 43216",
+        photo_url: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&auto=format&fit=crop&q=80",
+        area_id: 7,
+        specialty_id: 7,
+        subscription_active: true,
+        subscription_start: null,
+        subscription_end: null,
+        search_vector: null,
+        created_at: new Date().toISOString(),
+    },
+    {
+        user_id: "doc-8",
+        full_name: "Dr. Snehal Patil",
+        bio: "General Physician & Diabetologist providing complete preventive family healthcare.",
+        clinic_address: "Sadar Residency Road, Nagpur",
+        phone: "+91 98765 43217",
+        photo_url: "https://images.unsplash.com/photo-1594824813603-ee8388828e3b?w=400&auto=format&fit=crop&q=80",
+        area_id: 8,
+        specialty_id: 8,
+        subscription_active: true,
+        subscription_start: null,
+        subscription_end: null,
+        search_vector: null,
+        created_at: new Date().toISOString(),
+    },
+];
 
-    if (error) throw error
-    return data
+export const fetchAllDoctorProfiles = async () => {
+    return db.doctors.getAll() as any;
 }
 
 export const getDoctorProfileByUserId = async (user_id: string) => {
-    const { data, error } = await supabase
-        .from('doctor_profiles')
-        .select(`
-            *,
-            specialities (
-                specialty_id
-            )
-        `)
-        .eq('user_id', user_id)
-        .single()
-
-    if (error) throw error
-    return data
+    const doctor = db.doctors.getById(user_id);
+    return (doctor || db.doctors.getAll()[0]) as any;
 }
 
 export const updateDoctorProfile = async (user_id: string, updates: DoctorProfileUpdate) => {
@@ -489,22 +597,38 @@ export async function deleteReceptionistProfile(
 
 // --- SPECIALTIES ---
 
+export const MOCK_SPECIALTIES: Database["public"]["Tables"]["specialties"]["Row"][] = [
+    { id: 1, name: "Dentist" },
+    { id: 2, name: "Cardiologist" },
+    { id: 3, name: "Pediatrician" },
+    { id: 4, name: "Dermatologist" },
+    { id: 5, name: "Orthopedic Surgeon" },
+    { id: 6, name: "Gynecologist" },
+    { id: 7, name: "Neurologist" },
+    { id: 8, name: "General Physician" },
+];
+
 export async function fetchAllSpecialties(): Promise<Database["public"]["Tables"]["specialties"]["Row"][]> {
-    const { data, error } = await supabase.from("specialties").select("*").order("name");
-    if (error) throw error;
-    return data || [];
+    return db.specialties.getAll() as any;
 }
 
 export async function fetchSpecialtyById(
     id: number
 ): Promise<Database["public"]["Tables"]["specialties"]["Row"]> {
-    const { data, error } = await supabase
-        .from("specialties")
-        .select("*")
-        .eq("id", id)
-        .single();
+    try {
+        if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL.includes("placeholder")) {
+            return MOCK_SPECIALTIES.find((s) => s.id === id) || MOCK_SPECIALTIES[0];
+        }
+        const { data, error } = await supabase
+            .from("specialties")
+            .select("*")
+            .eq("id", id)
+            .single();
 
-    return throwOnError(data ? { data, error } : { data: null, error });
+        return throwOnError(data ? { data, error } : { data: null, error });
+    } catch {
+        return MOCK_SPECIALTIES.find((s) => s.id === id) || MOCK_SPECIALTIES[0];
+    }
 }
 
 export async function createSpecialty(
@@ -549,14 +673,19 @@ export async function deleteSpecialty(
 
 // --- AREAS ---
 
-export async function fetchAllAreas(): Promise<Database["public"]["Tables"]["areas"]["Row"][]> {
-    const { data, error } = await supabase
-        .from("areas")
-        .select("*")
-        .order("name", { ascending: true });
+export const MOCK_AREAS: Database["public"]["Tables"]["areas"]["Row"][] = [
+    { id: 1, name: "Sakkardhara", city: "Nagpur", state: "Maharashtra", country: "India" },
+    { id: 2, name: "Dhantoli", city: "Nagpur", state: "Maharashtra", country: "India" },
+    { id: 3, name: "Ramdaspeth", city: "Nagpur", state: "Maharashtra", country: "India" },
+    { id: 4, name: "Dharampeth", city: "Nagpur", state: "Maharashtra", country: "India" },
+    { id: 5, name: "Sitabuldi", city: "Nagpur", state: "Maharashtra", country: "India" },
+    { id: 6, name: "Civil Lines", city: "Nagpur", state: "Maharashtra", country: "India" },
+    { id: 7, name: "Wardha Road", city: "Nagpur", state: "Maharashtra", country: "India" },
+    { id: 8, name: "Sadar", city: "Nagpur", state: "Maharashtra", country: "India" },
+];
 
-    if (error) throw error;
-    return data || [];
+export async function fetchAllAreas(): Promise<Database["public"]["Tables"]["areas"]["Row"][]> {
+    return db.areas.getAll() as any;
 }
 
 export async function fetchAreaById(id: number): Promise<Database["public"]["Tables"]["areas"]["Row"]> {

@@ -3,13 +3,34 @@
 import Link from "next/link"
 import {Button} from "@/components/ui/button"
 import {Menu, X} from "lucide-react"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+    const [user, setUser] = useState<{ name: string; email: string } | null>(null);
+
+    useEffect(() => {
+        fetch("/api/auth/me")
+            .then((res) => res.json())
+            .then((data) => {
+                if (data?.user) {
+                    setUser(data.user);
+                } else {
+                    setUser(null);
+                }
+            })
+            .catch(() => setUser(null));
+    }, []);
+
+    const handleLogout = async () => {
+        await fetch("/api/auth/logout", { method: "POST" });
+        setUser(null);
+        window.location.href = "/";
+    };
+
     return (
-        <header className="bg-white shadow-sm border-b">
+        <header className="bg-white shadow-sm border-b sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
@@ -38,18 +59,43 @@ export function Header() {
                     </nav>
 
                     {/* Desktop Actions */}
-                    <div className="hidden md:flex items-center space-x-4">
-            <span className="text-sm text-gray-600">
-              <span className="text-amber-500 font-semibold">150+</span> doctors joined
-            </span>
-                        <Link href="/auth/login">
-                            <Button variant="outline" className="border-gray-300">
-                                Sign In
-                            </Button>
-                        </Link>
-                        <Link href="/doctor/register">
-                            <Button className="bg-orange-500 hover:bg-orange-600 text-white">Doctor</Button>
-                        </Link>
+                    <div className="hidden md:flex items-center space-x-3">
+                        {user ? (
+                            <>
+                                <Link href="/protected" className="text-xs font-semibold text-teal-700 hover:underline">
+                                    Hey, {user.name || user.email.split("@")[0]}
+                                </Link>
+                                <Link href="/protected">
+                                    <Button size="sm" variant="outline" className="border-teal-600 text-teal-700 hover:bg-teal-50">
+                                        Dashboard
+                                    </Button>
+                                </Link>
+                                <Button size="sm" variant="ghost" onClick={handleLogout} className="text-xs text-gray-500 hover:text-red-600">
+                                    Sign Out
+                                </Button>
+                            </>
+                        ) : (
+                            <>
+                                <span className="text-xs text-gray-500 mr-1">
+                                    <span className="text-amber-500 font-semibold">150+</span> doctors
+                                </span>
+                                <Link href="/auth/login">
+                                    <Button variant="outline" size="sm" className="border-gray-300">
+                                        Sign In
+                                    </Button>
+                                </Link>
+                                <Link href="/auth/sign-up">
+                                    <Button size="sm" className="bg-teal-600 hover:bg-teal-700 text-white">
+                                        Sign Up
+                                    </Button>
+                                </Link>
+                                <Link href="/doctor/register">
+                                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white">
+                                        Doctor
+                                    </Button>
+                                </Link>
+                            </>
+                        )}
                     </div>
 
                     {/* Mobile menu button */}

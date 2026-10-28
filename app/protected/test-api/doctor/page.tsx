@@ -102,7 +102,7 @@ export default function DoctorProfilesManager() {
                     No doctor profiles found. Click "Create Doctor" to add a new profile.
                 </div>
             ):
-                data?.map((profile) => (
+                data?.map((profile: any) => (
                 <div
                     key={profile.user_id}
                     className="flex items-center justify-between border p-4 rounded mb-2"

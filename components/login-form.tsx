@@ -40,6 +40,7 @@ export function LoginForm({
       if (error) throw error;
       // Update this route to redirect to an authenticated route. The user already has an active session.
       router.push("/protected");
+      router.refresh();
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
@@ -64,7 +65,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="patient@caredo.in"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -83,21 +84,29 @@ export function LoginForm({
                 <Input
                   id="password"
                   type="password"
+                  placeholder="password123"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full bg-teal-600 hover:bg-teal-700 text-white" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
             </div>
+
+            <div className="mt-4 p-3 bg-teal-50 border border-teal-200 rounded-lg text-xs text-teal-800 space-y-1">
+              <div className="font-semibold">Demo Credentials:</div>
+              <div>Patient: <code className="bg-teal-100 px-1 py-0.5 rounded">patient@caredo.in</code> / <code className="bg-teal-100 px-1 py-0.5 rounded">password123</code></div>
+              <div>Doctor: <code className="bg-teal-100 px-1 py-0.5 rounded">doctor@caredo.in</code> / <code className="bg-teal-100 px-1 py-0.5 rounded">password123</code></div>
+            </div>
+
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
               <Link
                 href="/auth/sign-up"
-                className="underline underline-offset-4"
+                className="underline underline-offset-4 text-teal-600 font-medium"
               >
                 Sign up
               </Link>

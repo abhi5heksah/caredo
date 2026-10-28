@@ -20,6 +20,7 @@ export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -44,11 +45,14 @@ export function SignUpForm({
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/protected`,
+          data: {
+            full_name: name || email.split("@")[0],
+          },
         },
       });
       if (error) throw error;
-      router.push("/auth/sign-up-success");
+      router.push("/protected");
+      router.refresh();
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
@@ -67,11 +71,22 @@ export function SignUpForm({
           <form onSubmit={handleSignUp}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
+                <Label htmlFor="name">Full Name</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Rahul Sharma"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="rahul@example.com"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

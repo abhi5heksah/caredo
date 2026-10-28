@@ -20,21 +20,18 @@ export default function DoctorsPage() {
     }, [])
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-50">
             <main className="relative">
-                {" "}
-                {/* Added relative for potential absolute positioning of filters */}
-                <DoctorSearch />
+                <Suspense fallback={<div className="h-16 bg-teal-600 animate-pulse" />}>
+                    <DoctorSearch />
+                </Suspense>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <div className="mb-4 text-gray-700">16 Doctors {/* This count should be dynamic */}</div>
-
-                    {/* DoctorFilters will now be a floating panel, conditionally rendered */}
                     {isFilterPanelOpen && (
                         <DoctorFilters isOpen={isFilterPanelOpen} onClose={() => setIsFilterPanelOpen(false)} />
                     )}
 
-                    <div className="mt-6">
-                        <Suspense fallback={<div className="text-center py-10">Loading doctors...</div>}>
+                    <div className="mt-4">
+                        <Suspense fallback={<div className="text-center py-12 text-gray-500">Loading verified doctors...</div>}>
                             <DoctorGrid />
                         </Suspense>
                     </div>

@@ -22,33 +22,59 @@ interface DoctorCardProps {
     doctor: Doctor
 }
 
+const specialtyNames: Record<number, string> = {
+    1: "Dentist",
+    2: "Cardiologist",
+    3: "Pediatrician",
+    4: "Dermatologist",
+    5: "Orthopedic Surgeon",
+    6: "Gynecologist",
+    7: "Neurologist",
+    8: "General Physician",
+}
+
 export function DoctorCard({ doctor }: DoctorCardProps) {
+    const specialty = specialtyNames[doctor.specialty_id] || "Doctor";
+
     return (
-        <Link href={`/doctors/${doctor.user_id}/book`} className="block group">
-            <Card className="w-full overflow-hidden rounded-lg border border-gray-200 group-hover:shadow-md transition-shadow duration-200">
-                <CardContent className="p-0">
-                    <div className="relative">
+        <Link href={`/doctors/${doctor.user_id}`} className="block group h-full">
+            <Card className="h-full overflow-hidden rounded-xl border border-gray-200 bg-white hover:border-teal-500 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+                <CardContent className="p-0 flex flex-col flex-grow">
+                    <div className="relative overflow-hidden bg-gray-100 h-44">
                         <img
-                            src={doctor.photo_url || "/placeholder.svg?height=160&width=240&query=doctor+avatar"}
+                            src={doctor.photo_url || "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80"}
                             alt={doctor.full_name}
-                            className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105" // Slightly shorter image, added hover effect
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
+                        {doctor.subscription_active && (
+                            <span className="absolute top-2 right-2 bg-teal-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full shadow flex items-center gap-1">
+                                <CheckCircle className="w-3 h-3" /> Verified
+                            </span>
+                        )}
                     </div>
-                    <div className="p-3 space-y-1.5">
-                        {" "}
-                        {/* Compact padding and spacing */}
-                        <h3 className="text-md font-semibold text-gray-800 truncate group-hover:text-brand-teal-600">
-                            {doctor.full_name}
-                        </h3>
-                        <p className="text-[11px] text-gray-500 truncate">
-                            {doctor.specialty_id} &bull; {doctor.bio}
-                        </p>
-                        <p className="text-[11px] text-gray-500">{doctor.phone}</p>
-                        <hr className="my-1.5 border-gray-100" /> {/* Thinner margin for HR */}
-                        <div className="flex justify-between items-center text-xs">
-                            <div className="flex items-center text-gray-600">
-                                <MapPin className="h-3.5 w-3.5 mr-1 text-red-500 flex-shrink-0" />
-                                <span className="truncate">{doctor.clinic_address}</span>
+                    <div className="p-4 flex flex-col flex-grow justify-between space-y-2">
+                        <div>
+                            <h3 className="text-base font-bold text-gray-900 group-hover:text-teal-600 transition-colors">
+                                {doctor.full_name}
+                            </h3>
+                            <p className="text-xs font-semibold text-teal-600 mt-0.5">
+                                {specialty}
+                            </p>
+                            {doctor.bio && (
+                                <p className="text-xs text-gray-500 line-clamp-2 mt-1">
+                                    {doctor.bio}
+                                </p>
+                            )}
+                        </div>
+                        <div className="pt-2 border-t border-gray-100 mt-auto">
+                            {doctor.clinic_address && (
+                                <div className="flex items-center text-xs text-gray-600 mb-1">
+                                    <MapPin className="h-3.5 w-3.5 mr-1 text-teal-600 flex-shrink-0" />
+                                    <span className="truncate">{doctor.clinic_address}</span>
+                                </div>
+                            )}
+                            <div className="mt-2 text-center py-1.5 px-3 bg-teal-50 text-teal-700 rounded-lg text-xs font-semibold group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                                View Profile &amp; Book Slot
                             </div>
                         </div>
                     </div>

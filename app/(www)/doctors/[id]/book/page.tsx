@@ -1,7 +1,12 @@
-function Page() {
-    return (
-        <div>Page</div>
-    );
-}
+import { redirect } from "next/navigation";
 
-export default Page;
+type Props = {
+    params: Promise<{
+        id: string;
+    }>;
+};
+
+export default async function Page({ params }: Props) {
+    const { id } = await params;
+    redirect(`/doctors/${id}`);
+}
