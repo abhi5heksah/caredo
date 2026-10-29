@@ -5,118 +5,14 @@ import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import {
-    Search,
-    Stethoscope,
-    HeartPulse,
-    Baby,
-    Sparkles,
-    Bone,
-    Brain,
-    Activity,
-    Eye,
-    Ear,
-    Smile,
-    ArrowRight
-} from "lucide-react"
-
-const specialtiesList = [
-    {
-        id: 1,
-        slug: "dentist",
-        name: "Dentist",
-        icon: Smile,
-        doctorCount: "18+ Doctors",
-        description: "Specialists in oral health, teeth cleaning, root canal treatments, and cosmetic smiles.",
-        conditions: ["Toothache", "Cavities", "Root Canal", "Braces", "Teeth Whitening"]
-    },
-    {
-        id: 2,
-        slug: "cardiologist",
-        name: "Cardiologist",
-        icon: HeartPulse,
-        doctorCount: "12+ Doctors",
-        description: "Experts in heart diseases, hypertension, heart rhythm disorders, and preventive cardiac care.",
-        conditions: ["High Blood Pressure", "Chest Pain", "Palpitations", "Cholesterol", "ECG Checkup"]
-    },
-    {
-        id: 3,
-        slug: "pediatrician",
-        name: "Pediatrician",
-        icon: Baby,
-        doctorCount: "15+ Doctors",
-        description: "Dedicated medical care for infants, children, and adolescents, including vaccination.",
-        conditions: ["Childhood Fever", "Vaccination", "Growth & Nutrition", "Cough & Cold", "Allergies"]
-    },
-    {
-        id: 4,
-        slug: "dermatologist",
-        name: "Dermatologist",
-        icon: Sparkles,
-        doctorCount: "14+ Doctors",
-        description: "Physicians specializing in skin, hair, and nail conditions, cosmetic and laser treatments.",
-        conditions: ["Acne & Pimples", "Hair Fall", "Eczema", "Skin Pigmentation", "Fungal Infections"]
-    },
-    {
-        id: 5,
-        slug: "orthopedic",
-        name: "Orthopedic Surgeon",
-        icon: Bone,
-        doctorCount: "10+ Doctors",
-        description: "Specialists in bone, joint, ligament, and spine disorders, fractures, and sports injuries.",
-        conditions: ["Knee Pain", "Joint Pain", "Fractures", "Back Ache", "Arthritis"]
-    },
-    {
-        id: 6,
-        slug: "gynecologist",
-        name: "Gynecologist",
-        icon: Activity,
-        doctorCount: "16+ Doctors",
-        description: "Complete women's healthcare, pregnancy monitoring, infertility care, and wellness.",
-        conditions: ["Pregnancy Care", "PCOS / PCOD", "Menstrual Health", "Infertility", "Menopause"]
-    },
-    {
-        id: 7,
-        slug: "neurologist",
-        name: "Neurologist",
-        icon: Brain,
-        doctorCount: "8+ Doctors",
-        description: "Experts diagnosing and treating nervous system, brain, and spinal disorders.",
-        conditions: ["Migraine & Headache", "Stroke Recovery", "Seizures & Epilepsy", "Nerve Pain", "Vertigo"]
-    },
-    {
-        id: 8,
-        slug: "general-physician",
-        name: "General Physician",
-        icon: Stethoscope,
-        doctorCount: "25+ Doctors",
-        description: "Primary care physicians treating general illnesses, diabetes, infections, and chronic care.",
-        conditions: ["Viral Fever", "Diabetes Management", "Thyroid", "Weakness", "Routine Checkup"]
-    },
-    {
-        id: 9,
-        slug: "ent",
-        name: "ENT Specialist",
-        icon: Ear,
-        doctorCount: "9+ Doctors",
-        description: "Ear, nose, throat, and head & neck specialists for sinus, hearing, and tonsil issues.",
-        conditions: ["Sinusitis", "Ear Infection", "Hearing Loss", "Tonsillitis", "Snoring"]
-    },
-    {
-        id: 10,
-        slug: "ophthalmologist",
-        name: "Ophthalmologist",
-        icon: Eye,
-        doctorCount: "7+ Doctors",
-        description: "Eye specialists providing vision care, cataract surgery, and retinal diagnosis.",
-        conditions: ["Eye Strain", "Cataract", "Glaucoma", "Dry Eyes", "Vision Correction"]
-    }
-]
+import { Search, ArrowRight } from "lucide-react"
+import { SPECIALTIES } from "@/lib/specialties"
+import { specialtyIconMap } from "@/lib/specialty-icons"
 
 export default function SpecialtiesPage() {
     const [search, setSearch] = useState("")
 
-    const filtered = specialtiesList.filter((s) =>
+    const filtered = SPECIALTIES.filter((s) =>
         s.name.toLowerCase().includes(search.toLowerCase()) ||
         s.description.toLowerCase().includes(search.toLowerCase()) ||
         s.conditions.some((c) => c.toLowerCase().includes(search.toLowerCase()))
@@ -125,19 +21,17 @@ export default function SpecialtiesPage() {
     return (
         <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto space-y-8">
-                {/* Header Section */}
                 <div className="text-center max-w-3xl mx-auto space-y-4">
                     <span className="text-xs font-bold uppercase tracking-wider text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
                         Explore Medical Care
                     </span>
                     <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-                        Find Doctors by <span className="text-teal-600">Specialty</span>
+                        Find Doctors by <span className="text-teal-600">Department</span>
                     </h1>
                     <p className="text-base text-gray-600">
-                        Consult with India&#39;s verified healthcare experts. Choose from our wide network of certified doctors, dentists, and surgeons.
+                        Consult with India&#39;s verified healthcare experts across {SPECIALTIES.length} departments.
                     </p>
 
-                    {/* Search Bar */}
                     <div className="relative max-w-md mx-auto pt-2">
                         <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                         <Input
@@ -150,10 +44,9 @@ export default function SpecialtiesPage() {
                     </div>
                 </div>
 
-                {/* Specialties Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
                     {filtered.map((specialty) => {
-                        const Icon = specialty.icon
+                        const Icon = specialtyIconMap[specialty.icon]
                         return (
                             <Card
                                 key={specialty.id}
@@ -163,7 +56,7 @@ export default function SpecialtiesPage() {
                                     <div className="space-y-3">
                                         <div className="flex items-center justify-between">
                                             <div className="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-colors duration-300">
-                                                <Icon className="w-6 h-6" />
+                                                {Icon ? <Icon className="w-6 h-6" /> : null}
                                             </div>
                                             <span className="text-xs font-semibold px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full">
                                                 {specialty.doctorCount}
@@ -179,7 +72,6 @@ export default function SpecialtiesPage() {
                                             </p>
                                         </div>
 
-                                        {/* Symptom pills */}
                                         <div className="flex flex-wrap gap-1.5 pt-1">
                                             {specialty.conditions.slice(0, 3).map((cond) => (
                                                 <span
@@ -197,7 +89,6 @@ export default function SpecialtiesPage() {
                                         </div>
                                     </div>
 
-                                    {/* Action Link */}
                                     <div className="pt-3 border-t border-gray-100">
                                         <Link
                                             href={`/doctors?query=${encodeURIComponent(specialty.name)}`}

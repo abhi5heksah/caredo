@@ -1,33 +1,24 @@
 import {Badge} from "@/components/ui/badge"
 import {CheckCircle, MapPin, Phone, Star} from "lucide-react"
 import {Tables} from "@/types/database";
+import { DoctorImage } from "@/components/doctor-image"
+import { getSpecialtyName } from "@/lib/specialties"
 
 
 interface DoctorProfileHeroProps {
   doctor: Tables<'doctor_profiles'>
 }
 
-const specialtyNames: Record<number, string> = {
-  1: "Dentist & Dental Surgeon",
-  2: "Cardiologist",
-  3: "Pediatrician",
-  4: "Dermatologist & Cosmetologist",
-  5: "Orthopedic Surgeon",
-  6: "Gynecologist & Obstetrician",
-  7: "Neurologist",
-  8: "General Physician",
-};
-
 export function DoctorProfileHero({ doctor }: DoctorProfileHeroProps) {
-  const specialty = specialtyNames[doctor.specialty_id] || "Medical Specialist";
+  const specialty = getSpecialtyName(doctor.specialty_id, "Medical Specialist");
 
   return (
     <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
       <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-        <img
-          src={doctor.photo_url || "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80"}
+        <DoctorImage
+          src={doctor.photo_url}
           alt={doctor.full_name}
-          className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover border-4 border-teal-50 mx-auto sm:mx-0 shadow-sm"
+          className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover object-top border-4 border-teal-50 mx-auto sm:mx-0 shadow-sm"
         />
         <div className="flex-1 text-center sm:text-left">
           <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">

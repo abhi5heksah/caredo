@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#F3F4F6"/>
+  <path d="M160 170L185 140L215 175L235 155L260 185H140L160 170Z" fill="#CBD5E1"/>
+  <circle cx="170" cy="120" r="15" fill="#CBD5E1"/>
+  <text x="50%" y="75%" dominant-baseline="middle" text-anchor="middle" fill="#94A3B8" font-family="sans-serif" font-size="14">Clinic Image</text>
+</svg>

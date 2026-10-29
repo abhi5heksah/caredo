@@ -76,7 +76,7 @@ const App = () => {
         {/* Right Section */}
         <div className="relative z-10 mt-2 lg:mt-2 lg:w-[50%] flex lg:justify-end">
           <img
-            src="/doctor.png"
+            src="/placeholder-4qm88.png"
             alt="Doctor"
             className="w-48 h-48 sm:w-80 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-contain rounded-full shadow-lg"
             onError={(e) => {

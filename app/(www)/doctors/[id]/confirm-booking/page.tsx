@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Calendar, Clock, MapPin, CheckCircle2, User, Phone, Mail, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { MOCK_DOCTORS } from "@/lib/apis/api"
+import { DoctorImage } from "@/components/doctor-image"
 
 export default function ConfirmBookingPage() {
     const searchParams = useSearchParams()
@@ -143,10 +144,10 @@ export default function ConfirmBookingPage() {
                             </CardHeader>
                             <CardContent className="p-4 space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <img
-                                        src={doctor.photo_url || "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80"}
+                                    <DoctorImage
+                                        src={doctor.photo_url}
                                         alt={doctor.full_name}
-                                        className="w-14 h-14 rounded-full object-cover border-2 border-teal-200"
+                                        className="w-14 h-14 rounded-full object-cover object-top border-2 border-teal-200"
                                     />
                                     <div>
                                         <h4 className="font-bold text-gray-900 text-sm">{doctor.full_name}</h4>

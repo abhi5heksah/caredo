@@ -5,6 +5,7 @@ import {fetchAllDoctorProfiles} from "@/lib/apis/api";
 import {useQuery} from "@tanstack/react-query";
 import {useSearchParams} from "next/navigation";
 import {useMemo} from "react";
+import { SPECIALTIES, getSpecialtyName } from "@/lib/specialties";
 
 export function DoctorGrid() {
     const searchParams = useSearchParams();
@@ -23,24 +24,44 @@ export function DoctorGrid() {
 
     const filteredDoctors = useMemo(() => {
         if (!doctors) return [];
-        return (doctors as any[]).filter((doc: any) => {
-            const matchesQuery = !query ||
-                doc.full_name?.toLowerCase().includes(query) ||
-                doc.bio?.toLowerCase().includes(query) ||
-                (query.includes("dent") && doc.specialty_id === 1) ||
-                (query.includes("cardio") && doc.specialty_id === 2) ||
-                (query.includes("pedia") && doc.specialty_id === 3) ||
-                (query.includes("derma") && doc.specialty_id === 4) ||
-                (query.includes("ortho") && doc.specialty_id === 5) ||
-                (query.includes("gyne") && doc.specialty_id === 6) ||
-                (query.includes("neuro") && doc.specialty_id === 7) ||
-                (query.includes("physician") && doc.specialty_id === 8);
+        const q = query.trim().toLowerCase();
+        const exactSpecialty = q
+            ? SPECIALTIES.find(
+                  (s) =>
+                      s.name.toLowerCase() === q ||
+                      s.slug === q ||
+                      `${s.name.toLowerCase()}s` === q
+              )
+            : null;
 
-            const matchesCity = !city ||
+        return (doctors as any[]).filter((doc: any) => {
+            const matchesCity =
+                !city ||
                 doc.clinic_address?.toLowerCase().includes(city) ||
                 city === "nagpur"; // default demo city
 
-            return matchesQuery && matchesCity;
+            if (!matchesCity) return false;
+            if (!q) return true;
+
+            if (exactSpecialty) {
+                return doc.specialty_id === exactSpecialty.id;
+            }
+
+            const specialtyName = getSpecialtyName(doc.specialty_id).toLowerCase();
+            const matchesSpecialty = SPECIALTIES.some(
+                (s) =>
+                    doc.specialty_id === s.id &&
+                    (s.name.toLowerCase().includes(q) ||
+                        s.slug.includes(q) ||
+                        s.conditions.some((c) => c.toLowerCase().includes(q)))
+            );
+
+            return (
+                doc.full_name?.toLowerCase().includes(q) ||
+                doc.bio?.toLowerCase().includes(q) ||
+                specialtyName.includes(q) ||
+                matchesSpecialty
+            );
         });
     }, [doctors, query, city]);
 

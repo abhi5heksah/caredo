@@ -1,0 +1,238 @@
+export type SpecialtyRecord = {
+    id: number
+    slug: string
+    name: string
+    icon: string
+    doctorCount: string
+    description: string
+    conditions: string[]
+}
+
+export const SPECIALTIES: SpecialtyRecord[] = [
+    {
+        id: 1,
+        slug: "dentist",
+        name: "Dentist",
+        icon: "smile",
+        doctorCount: "18+ Doctors",
+        description: "Specialists in oral health, teeth cleaning, root canal treatments, and cosmetic smiles.",
+        conditions: ["Toothache", "Cavities", "Root Canal", "Braces", "Teeth Whitening"],
+    },
+    {
+        id: 2,
+        slug: "cardiologist",
+        name: "Cardiologist",
+        icon: "heart-pulse",
+        doctorCount: "12+ Doctors",
+        description: "Experts in heart diseases, hypertension, heart rhythm disorders, and preventive cardiac care.",
+        conditions: ["High Blood Pressure", "Chest Pain", "Palpitations", "Cholesterol", "ECG Checkup"],
+    },
+    {
+        id: 3,
+        slug: "pediatrician",
+        name: "Pediatrician",
+        icon: "baby",
+        doctorCount: "15+ Doctors",
+        description: "Dedicated medical care for infants, children, and adolescents, including vaccination.",
+        conditions: ["Childhood Fever", "Vaccination", "Growth & Nutrition", "Cough & Cold", "Allergies"],
+    },
+    {
+        id: 4,
+        slug: "dermatologist",
+        name: "Dermatologist",
+        icon: "sparkles",
+        doctorCount: "14+ Doctors",
+        description: "Physicians specializing in skin, hair, and nail conditions, cosmetic and laser treatments.",
+        conditions: ["Acne & Pimples", "Hair Fall", "Eczema", "Skin Pigmentation", "Fungal Infections"],
+    },
+    {
+        id: 5,
+        slug: "orthopedic",
+        name: "Orthopedic Surgeon",
+        icon: "bone",
+        doctorCount: "10+ Doctors",
+        description: "Specialists in bone, joint, ligament, and spine disorders, fractures, and sports injuries.",
+        conditions: ["Knee Pain", "Joint Pain", "Fractures", "Back Ache", "Arthritis"],
+    },
+    {
+        id: 6,
+        slug: "gynecologist",
+        name: "Gynecologist",
+        icon: "activity",
+        doctorCount: "16+ Doctors",
+        description: "Complete women's healthcare, pregnancy monitoring, infertility care, and wellness.",
+        conditions: ["Pregnancy Care", "PCOS / PCOD", "Menstrual Health", "Infertility", "Menopause"],
+    },
+    {
+        id: 7,
+        slug: "neurologist",
+        name: "Neurologist",
+        icon: "brain",
+        doctorCount: "8+ Doctors",
+        description: "Experts diagnosing and treating nervous system, brain, and spinal disorders.",
+        conditions: ["Migraine & Headache", "Stroke Recovery", "Seizures & Epilepsy", "Nerve Pain", "Vertigo"],
+    },
+    {
+        id: 8,
+        slug: "general-physician",
+        name: "General Physician",
+        icon: "stethoscope",
+        doctorCount: "25+ Doctors",
+        description: "Primary care physicians treating general illnesses, diabetes, infections, and chronic care.",
+        conditions: ["Viral Fever", "Diabetes Management", "Thyroid", "Weakness", "Routine Checkup"],
+    },
+    {
+        id: 9,
+        slug: "ent",
+        name: "ENT Specialist",
+        icon: "ear",
+        doctorCount: "9+ Doctors",
+        description: "Ear, nose, throat, and head & neck specialists for sinus, hearing, and tonsil issues.",
+        conditions: ["Sinusitis", "Ear Infection", "Hearing Loss", "Tonsillitis", "Snoring"],
+    },
+    {
+        id: 10,
+        slug: "ophthalmologist",
+        name: "Ophthalmologist",
+        icon: "eye",
+        doctorCount: "7+ Doctors",
+        description: "Eye specialists providing vision care, cataract surgery, and retinal diagnosis.",
+        conditions: ["Eye Strain", "Cataract", "Glaucoma", "Dry Eyes", "Vision Correction"],
+    },
+    {
+        id: 11,
+        slug: "pulmonologist",
+        name: "Pulmonologist",
+        icon: "wind",
+        doctorCount: "8+ Doctors",
+        description: "Chest and lung specialists treating asthma, COPD, tuberculosis, and breathing disorders.",
+        conditions: ["Asthma", "COPD", "Cough", "Breathlessness", "Sleep Apnea"],
+    },
+    {
+        id: 12,
+        slug: "gastroenterologist",
+        name: "Gastroenterologist",
+        icon: "pill",
+        doctorCount: "9+ Doctors",
+        description: "Digestive system experts for acidity, liver disease, IBS, and endoscopy care.",
+        conditions: ["Acidity", "IBS", "Liver Care", "Constipation", "Stomach Pain"],
+    },
+    {
+        id: 13,
+        slug: "urologist",
+        name: "Urologist",
+        icon: "droplets",
+        doctorCount: "7+ Doctors",
+        description: "Specialists in urinary tract, prostate, kidney stones, and male reproductive health.",
+        conditions: ["Kidney Stones", "UTI", "Prostate", "Urine Infection", "Bladder Pain"],
+    },
+    {
+        id: 14,
+        slug: "nephrologist",
+        name: "Nephrologist",
+        icon: "waves",
+        doctorCount: "6+ Doctors",
+        description: "Kidney specialists for chronic kidney disease, dialysis planning, and hypertension.",
+        conditions: ["Kidney Disease", "Dialysis", "Swelling", "High Creatinine", "Hypertension"],
+    },
+    {
+        id: 15,
+        slug: "oncologist",
+        name: "Oncologist",
+        icon: "shield",
+        doctorCount: "6+ Doctors",
+        description: "Cancer care specialists for diagnosis, chemotherapy guidance, and follow-up treatment.",
+        conditions: ["Cancer Screening", "Chemotherapy", "Tumor Review", "Oncology Follow-up"],
+    },
+    {
+        id: 16,
+        slug: "psychiatrist",
+        name: "Psychiatrist",
+        icon: "heart-handshake",
+        doctorCount: "11+ Doctors",
+        description: "Mental health physicians treating anxiety, depression, sleep issues, and stress disorders.",
+        conditions: ["Anxiety", "Depression", "Insomnia", "Stress", "Panic Attacks"],
+    },
+    {
+        id: 17,
+        slug: "endocrinologist",
+        name: "Endocrinologist",
+        icon: "flask-conical",
+        doctorCount: "8+ Doctors",
+        description: "Hormone specialists for diabetes, thyroid, PCOS-related endocrine, and metabolism care.",
+        conditions: ["Diabetes", "Thyroid", "Hormones", "Obesity", "PCOS"],
+    },
+    {
+        id: 18,
+        slug: "rheumatologist",
+        name: "Rheumatologist",
+        icon: "hand",
+        doctorCount: "5+ Doctors",
+        description: "Joint and autoimmune specialists for arthritis, gout, and connective tissue disease.",
+        conditions: ["Rheumatoid Arthritis", "Gout", "Joint Swelling", "Autoimmune Care"],
+    },
+    {
+        id: 19,
+        slug: "general-surgeon",
+        name: "General Surgeon",
+        icon: "scissors",
+        doctorCount: "10+ Doctors",
+        description: "Surgical care for hernia, appendix, gallbladder, wounds, and minor procedures.",
+        conditions: ["Hernia", "Appendix", "Gallbladder", "Piles", "Wound Care"],
+    },
+    {
+        id: 20,
+        slug: "physiotherapist",
+        name: "Physiotherapist",
+        icon: "person-standing",
+        doctorCount: "13+ Doctors",
+        description: "Rehab specialists for pain relief, posture correction, sports injury, and mobility.",
+        conditions: ["Back Pain", "Sports Injury", "Posture", "Rehab", "Stiffness"],
+    },
+    {
+        id: 21,
+        slug: "dietitian",
+        name: "Dietitian",
+        icon: "apple",
+        doctorCount: "9+ Doctors",
+        description: "Nutrition experts for weight management, diabetes diet, and clinical meal planning.",
+        conditions: ["Weight Loss", "Diabetes Diet", "PCOS Diet", "Nutrition Plan"],
+    },
+    {
+        id: 22,
+        slug: "plastic-surgeon",
+        name: "Plastic Surgeon",
+        icon: "sparkle",
+        doctorCount: "6+ Doctors",
+        description: "Reconstructive and cosmetic surgery for burns, scars, and aesthetic procedures.",
+        conditions: ["Scar Revision", "Burns", "Cosmetic Surgery", "Reconstructive Care"],
+    },
+    {
+        id: 23,
+        slug: "hematologist",
+        name: "Hematologist",
+        icon: "droplet",
+        doctorCount: "5+ Doctors",
+        description: "Blood specialists treating anemia, clotting disorders, and related conditions.",
+        conditions: ["Anemia", "Low Platelets", "Clotting", "Blood Disorders"],
+    },
+    {
+        id: 24,
+        slug: "radiologist",
+        name: "Radiologist",
+        icon: "scan",
+        doctorCount: "7+ Doctors",
+        description: "Imaging specialists for X-ray, ultrasound, CT, MRI reporting, and diagnostics.",
+        conditions: ["X-Ray", "Ultrasound", "MRI", "CT Scan", "Diagnostic Imaging"],
+    },
+]
+
+export const SPECIALTY_NAMES: Record<number, string> = Object.fromEntries(
+    SPECIALTIES.map((s) => [s.id, s.name])
+)
+
+export function getSpecialtyName(id: number, fallback = "Doctor"): string {
+    return SPECIALTY_NAMES[id] || fallback
+}
+
+export const SPECIALTY_SELECT_OPTIONS = SPECIALTIES.map((s) => s.name)

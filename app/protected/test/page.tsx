@@ -25,7 +25,7 @@ export default function FullPageComponent() {
 
       <div className="mt-12 w-full max-w-4xl">
         <img
-          src="https://images.unsplash.com/photo-1588776814546-ec14bcb638b4?auto=format&fit=crop&w=1000&q=80"
+          src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1000&q=80"
           alt="Doctor illustration"
           className="w-full rounded-lg shadow-lg"
         />

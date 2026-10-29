@@ -76,9 +76,14 @@ export function HeroSection() {
                     {/* Doctor Image */}
                     <div className="hidden lg:block relative">
                         <img
-                            src="/placeholder-4qm88.png" // Using the existing placeholder
+                            src="/doctor.png"
                             alt="Professional Doctor"
-                            className="w-full h-auto max-w-md mx-auto rounded-lg"
+                            className="w-full h-auto max-w-md mx-auto rounded-2xl drop-shadow-2xl object-contain"
+                            onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.onerror = null;
+                                target.src = "/female-doctor-smiling.png";
+                            }}
                         />
                     </div>
                 </div>
@@ -91,7 +96,12 @@ export function HeroSection() {
                             <img
                                 src="/female-doctor-smiling.png"
                                 alt="One India, One Caredo"
-                                className="w-24 h-24 rounded-full object-cover border-4 border-teal-200"
+                                className="w-24 h-24 rounded-full object-cover border-4 border-teal-200 shadow-md"
+                                onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.onerror = null;
+                                    target.src = "/placeholder-4qm88.png";
+                                }}
                             />
                             <div>
                                 <h3 className="text-2xl font-bold text-gray-800">

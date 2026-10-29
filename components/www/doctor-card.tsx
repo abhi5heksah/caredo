@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, MapPin } from "lucide-react"
 import Link from "next/link"
+import { DoctorImage } from "@/components/doctor-image"
+import { getSpecialtyName } from "@/lib/specialties"
 
 interface Doctor {
     area_id: number
@@ -22,29 +24,18 @@ interface DoctorCardProps {
     doctor: Doctor
 }
 
-const specialtyNames: Record<number, string> = {
-    1: "Dentist",
-    2: "Cardiologist",
-    3: "Pediatrician",
-    4: "Dermatologist",
-    5: "Orthopedic Surgeon",
-    6: "Gynecologist",
-    7: "Neurologist",
-    8: "General Physician",
-}
-
 export function DoctorCard({ doctor }: DoctorCardProps) {
-    const specialty = specialtyNames[doctor.specialty_id] || "Doctor";
+    const specialty = getSpecialtyName(doctor.specialty_id);
 
     return (
         <Link href={`/doctors/${doctor.user_id}`} className="block group h-full">
             <Card className="h-full overflow-hidden rounded-xl border border-gray-200 bg-white hover:border-teal-500 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
                 <CardContent className="p-0 flex flex-col flex-grow">
                     <div className="relative overflow-hidden bg-gray-100 h-44">
-                        <img
-                            src={doctor.photo_url || "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80"}
+                        <DoctorImage
+                            src={doctor.photo_url}
                             alt={doctor.full_name}
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                         />
                         {doctor.subscription_active && (
                             <span className="absolute top-2 right-2 bg-teal-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full shadow flex items-center gap-1">

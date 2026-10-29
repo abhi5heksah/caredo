@@ -130,6 +130,9 @@ export function DoctorInfoTabs({ doctor }: DoctorInfoTabsProps) {
                     src={imgSrc || "/placeholder.svg"}
                     alt={`Clinic image ${index + 1}`}
                     className="w-full h-48 object-cover rounded-lg shadow"
+                    onError={(e) => {
+                      e.currentTarget.src = "/placeholder.svg"
+                    }}
                   />
                 ))}
               </div>

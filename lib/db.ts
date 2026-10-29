@@ -1,5 +1,8 @@
 // lib/db.ts - Local Database for Caredo
 
+import { SEED_DOCTORS } from "@/lib/seed-doctors"
+import { SPECIALTIES } from "@/lib/specialties"
+
 export interface User {
     id: string;
     email: string;
@@ -91,139 +94,9 @@ const DEFAULT_USERS: User[] = [
     },
 ];
 
-const DEFAULT_DOCTORS: DoctorProfile[] = [
-    {
-        user_id: "doc-1",
-        full_name: "Dr. Sanket Gidmare",
-        bio: "Experienced Dental Surgeon & Aesthetic Consultant with 10+ years of clinical excellence.",
-        clinic_address: "Ayodhya Nagar, Sakkardhara, Nagpur",
-        phone: "+91 98765 43210",
-        photo_url: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80",
-        area_id: 1,
-        specialty_id: 1,
-        subscription_active: true,
-        subscription_start: null,
-        subscription_end: null,
-        search_vector: null,
-        created_at: "2026-01-01T00:00:00.000Z",
-    },
-    {
-        user_id: "doc-2",
-        full_name: "Dr. Priya Sharma",
-        bio: "Senior Interventional Cardiologist specializing in preventive heart health and diagnostics.",
-        clinic_address: "Dhantoli Medical Enclave, Nagpur",
-        phone: "+91 98765 43211",
-        photo_url: "https://images.unsplash.com/photo-1594824813589-9159045fa787?w=400&auto=format&fit=crop&q=80",
-        area_id: 2,
-        specialty_id: 2,
-        subscription_active: true,
-        subscription_start: null,
-        subscription_end: null,
-        search_vector: null,
-        created_at: "2026-01-02T00:00:00.000Z",
-    },
-    {
-        user_id: "doc-3",
-        full_name: "Dr. Rajesh Verma",
-        bio: "Pediatrician & Neonatologist dedicated to comprehensive child health and growth monitoring.",
-        clinic_address: "Ramdaspeth Central Clinic, Nagpur",
-        phone: "+91 98765 43212",
-        photo_url: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&auto=format&fit=crop&q=80",
-        area_id: 3,
-        specialty_id: 3,
-        subscription_active: true,
-        subscription_start: null,
-        subscription_end: null,
-        search_vector: null,
-        created_at: "2026-01-03T00:00:00.000Z",
-    },
-    {
-        user_id: "doc-4",
-        full_name: "Dr. Ananya Deshmukh",
-        bio: "Consultant Dermatologist & Cosmetologist specializing in skin rejuvenating and clinical care.",
-        clinic_address: "Dharampeth Main Road, Nagpur",
-        phone: "+91 98765 43213",
-        photo_url: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&auto=format&fit=crop&q=80",
-        area_id: 4,
-        specialty_id: 4,
-        subscription_active: true,
-        subscription_start: null,
-        subscription_end: null,
-        search_vector: null,
-        created_at: "2026-01-04T00:00:00.000Z",
-    },
-    {
-        user_id: "doc-5",
-        full_name: "Dr. Vikram Joshi",
-        bio: "Chief Orthopedic Surgeon with expertise in joint replacements and sports medicine.",
-        clinic_address: "Sitabuldi Square, Nagpur",
-        phone: "+91 98765 43214",
-        photo_url: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&auto=format&fit=crop&q=80",
-        area_id: 5,
-        specialty_id: 5,
-        subscription_active: true,
-        subscription_start: null,
-        subscription_end: null,
-        search_vector: null,
-        created_at: "2026-01-05T00:00:00.000Z",
-    },
-    {
-        user_id: "doc-6",
-        full_name: "Dr. Neha Patel",
-        bio: "Obstetrician & Gynecologist offering high-risk pregnancy care and laparoscopic surgery.",
-        clinic_address: "Civil Lines, Nagpur",
-        phone: "+91 98765 43215",
-        photo_url: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&auto=format&fit=crop&q=80",
-        area_id: 6,
-        specialty_id: 6,
-        subscription_active: true,
-        subscription_start: null,
-        subscription_end: null,
-        search_vector: null,
-        created_at: "2026-01-06T00:00:00.000Z",
-    },
-    {
-        user_id: "doc-7",
-        full_name: "Dr. Amit Kulkarni",
-        bio: "Consultant Neurologist focusing on stroke rehabilitation, migraines, and neurological care.",
-        clinic_address: "Wardha Road, Nagpur",
-        phone: "+91 98765 43216",
-        photo_url: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&auto=format&fit=crop&q=80",
-        area_id: 7,
-        specialty_id: 7,
-        subscription_active: true,
-        subscription_start: null,
-        subscription_end: null,
-        search_vector: null,
-        created_at: "2026-01-07T00:00:00.000Z",
-    },
-    {
-        user_id: "doc-8",
-        full_name: "Dr. Snehal Patil",
-        bio: "General Physician & Diabetologist providing complete preventive family healthcare.",
-        clinic_address: "Sadar Residency Road, Nagpur",
-        phone: "+91 98765 43217",
-        photo_url: "https://images.unsplash.com/photo-1594824813603-ee8388828e3b?w=400&auto=format&fit=crop&q=80",
-        area_id: 8,
-        specialty_id: 8,
-        subscription_active: true,
-        subscription_start: null,
-        subscription_end: null,
-        search_vector: null,
-        created_at: "2026-01-08T00:00:00.000Z",
-    },
-];
+const DEFAULT_DOCTORS: DoctorProfile[] = SEED_DOCTORS as DoctorProfile[];
 
-const DEFAULT_SPECIALTIES: Specialty[] = [
-    { id: 1, name: "Dentist" },
-    { id: 2, name: "Cardiologist" },
-    { id: 3, name: "Pediatrician" },
-    { id: 4, name: "Dermatologist" },
-    { id: 5, name: "Orthopedic Surgeon" },
-    { id: 6, name: "Gynecologist" },
-    { id: 7, name: "Neurologist" },
-    { id: 8, name: "General Physician" },
-];
+const DEFAULT_SPECIALTIES: Specialty[] = SPECIALTIES.map((s) => ({ id: s.id, name: s.name }));
 
 const DEFAULT_AREAS: Area[] = [
     { id: 1, name: "Sakkardhara", city: "Nagpur", state: "Maharashtra", country: "India" },
@@ -286,13 +159,45 @@ let inMemoryDB: DatabaseSchema = {
 };
 
 // Safe file load
+function mergeSeedData(parsed: Partial<DatabaseSchema>): { db: DatabaseSchema; upgraded: boolean } {
+    let upgraded = false;
+    const users = parsed.users?.length ? parsed.users : DEFAULT_USERS;
+    const appointments = parsed.appointments?.length ? parsed.appointments : DEFAULT_APPOINTMENTS;
+    const areas = parsed.areas?.length ? parsed.areas : DEFAULT_AREAS;
+    const specialties =
+        parsed.specialties && parsed.specialties.length >= DEFAULT_SPECIALTIES.length
+            ? parsed.specialties
+            : DEFAULT_SPECIALTIES;
+    if (!parsed.specialties || parsed.specialties.length < DEFAULT_SPECIALTIES.length) {
+        upgraded = true;
+    }
+
+    const doctors = [...(parsed.doctors || [])];
+    for (const seed of DEFAULT_DOCTORS) {
+        const current = doctors.find((d) => d.user_id === seed.user_id);
+        if (!current) {
+            doctors.push(seed);
+            upgraded = true;
+        } else if (current.photo_url && current.photo_url.startsWith("http")) {
+            current.photo_url = seed.photo_url;
+            upgraded = true;
+        }
+    }
+
+    return { db: { users, doctors, appointments, specialties, areas }, upgraded };
+}
+
 function loadDB(): DatabaseSchema {
     if (typeof window !== "undefined") {
         // Client-side: try localStorage
         try {
             const stored = localStorage.getItem("caredo_local_db");
             if (stored) {
-                return JSON.parse(stored);
+                const parsed = JSON.parse(stored);
+                const { db: merged, upgraded } = mergeSeedData(parsed);
+                inMemoryDB = merged;
+                if (upgraded) saveDB(merged);
+                return merged;
             }
         } catch {
             // ignore
@@ -309,15 +214,10 @@ function loadDB(): DatabaseSchema {
         if (fs.existsSync(dbPath)) {
             const content = fs.readFileSync(dbPath, "utf-8");
             const parsed = JSON.parse(content);
-            inMemoryDB = {
-                users: parsed.users || DEFAULT_USERS,
-                doctors: parsed.doctors || DEFAULT_DOCTORS,
-                appointments: parsed.appointments || DEFAULT_APPOINTMENTS,
-                specialties: parsed.specialties || DEFAULT_SPECIALTIES,
-                areas: parsed.areas || DEFAULT_AREAS,
-            };
+            const { db: merged, upgraded } = mergeSeedData(parsed);
+            inMemoryDB = merged;
+            if (upgraded) saveDB(inMemoryDB);
         } else {
-            // Ensure data directory exists and write initial state
             const dir = path.dirname(dbPath);
             if (!fs.existsSync(dir)) {
                 fs.mkdirSync(dir, { recursive: true });

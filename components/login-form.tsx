@@ -96,11 +96,11 @@ export function LoginForm({
               </Button>
             </div>
 
-            <div className="mt-4 p-3 bg-teal-50 border border-teal-200 rounded-lg text-xs text-teal-800 space-y-1">
+            {/* <div className="mt-4 p-3 bg-teal-50 border border-teal-200 rounded-lg text-xs text-teal-800 space-y-1">
               <div className="font-semibold">Demo Credentials:</div>
               <div>Patient: <code className="bg-teal-100 px-1 py-0.5 rounded">patient@caredo.in</code> / <code className="bg-teal-100 px-1 py-0.5 rounded">password123</code></div>
               <div>Doctor: <code className="bg-teal-100 px-1 py-0.5 rounded">doctor@caredo.in</code> / <code className="bg-teal-100 px-1 py-0.5 rounded">password123</code></div>
-            </div>
+            </div> */}
 
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}

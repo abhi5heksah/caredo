@@ -60,7 +60,7 @@ export default function AboutPage() {
                     </div>
                     <div className="relative">
                         <img
-                            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&auto=format&fit=crop&q=80"
+                            src="/female-doctor-smiling.png"
                             alt="Caredo medical professionals"
                             className="rounded-2xl shadow-lg object-cover w-full h-80 sm:h-96"
                         />

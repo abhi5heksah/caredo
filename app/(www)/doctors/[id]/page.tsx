@@ -41,7 +41,7 @@ async function Page({params}: Props) {
             bio: "Experienced Dental Surgeon & Aesthetic Consultant with over 10 years of clinical excellence.",
             clinic_address: "Ayodhya Nagar, Sakkardhara, Nagpur",
             phone: "+91 98765 43210",
-            photo_url: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80",
+            photo_url: "/placeholder-4qm88.png",
             area_id: 1,
             specialty_id: 1,
             subscription_active: true,
@@ -65,9 +65,9 @@ async function Page({params}: Props) {
             "Preventive Oral Care",
         ],
         clinicImages: [
-            doctorProfile.photo_url || "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&auto=format&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&auto=format&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=400&auto=format&fit=crop&q=80",
+            doctorProfile.photo_url || "/placeholder-4qm88.png",
+            "/female-doctor-smiling.png",
+            "/placeholder.svg",
         ],
     };
 

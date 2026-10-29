@@ -84,16 +84,16 @@ export default async function ProtectedDashboardPage() {
                             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                         </div>
                         <div className="text-2xl font-extrabold text-emerald-600">Active</div>
-                        <p className="text-xs text-gray-400">Account verified in local DB</p>
+                        <p className="text-xs text-gray-400">Account verified.</p>
                     </Card>
 
                     <Card className="rounded-2xl border border-gray-200 bg-white p-5 space-y-2">
                         <div className="flex items-center justify-between text-gray-500 text-xs font-semibold uppercase">
-                            <span>Database Mode</span>
+                            <span>Booking</span>
                             <Stethoscope className="w-4 h-4 text-cyan-600" />
                         </div>
-                        <div className="text-2xl font-extrabold text-gray-900">lib/db.ts</div>
-                        <p className="text-xs text-gray-400">Local JSON-backed persistent DB</p>
+                        <div className="text-2xl font-extrabold text-gray-900">Confirmed </div>
+                        <p className="text-xs text-gray-400">verified</p>
                     </Card>
                 </div>
 
