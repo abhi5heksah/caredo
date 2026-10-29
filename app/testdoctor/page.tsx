@@ -102,8 +102,8 @@ const App = () => {
           plan better and ensures a more seamless appointment experience.
         </p>
         <p className="text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-          Let's keep patients informed and prepared — because their health
-          shouldn't have to wait.
+          Let&apos;s keep patients informed and prepared — because their health
+          shouldn&apos;t have to wait.
         </p>
       </footer>
     </div>

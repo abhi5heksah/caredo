@@ -1,7 +1,6 @@
 "use client"; 
 
 import React from "react";
-import DashboardHeader from "./dashboard-header";
 import PatientsTable from "./patients-table";
 import { Button } from "@/components/ui/button";
 
@@ -40,7 +39,7 @@ export default function Home() {
           <PatientsTable />
         </div>
 
-        <p className="mt-8 text-xs text-gray-500">*Click when patient enters doctor's cabin.</p>
+        <p className="mt-8 text-xs text-gray-500">*Click when patient enters doctor&apos;s cabin.</p>
         <Button className="bg-[rgba(0,0,0,0.69)] text-white font-bold rounded-full py-2 w-full mt-4 hover:bg-black transition-colors">
           Patient In
         </Button>

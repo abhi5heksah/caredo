@@ -20,7 +20,6 @@ import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
 
 export default function Clinic(): React.JSX.Element {
-  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
 

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 export default function Plan() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [currentPlanType, setCurrentPlanType] = useState<
     "free" | "monthly" | "yearly"

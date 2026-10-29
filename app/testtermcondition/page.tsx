@@ -44,7 +44,7 @@ export default function TermsAndConditions() {
               If a patient’s appointment is cancelled due to <b>emergency cases in the hospital</b> or <b>long time taken by a previous patient</b>, they will be given first priority in the next available slot on Caredo.
             </li>
             <li>
-              Receptionist will click <b>"Patient in"</b> regularly <b>(when the patient is entering the doctor’s cabin)</b>, which helps patients get live updates of their numbers in the hospital.
+              Receptionist will click <b>&quot;Patient in&quot;</b> regularly <b>(when the patient is entering the doctor’s cabin)</b>, which helps patients get live updates of their numbers in the hospital.
             </li>
           </ul>
 

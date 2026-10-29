@@ -51,7 +51,11 @@ export function SignUpForm({
         },
       });
       if (error) throw error;
-      router.push("/protected");
+      const destination =
+        (typeof window !== "undefined" &&
+          new URLSearchParams(window.location.search).get("next")) ||
+        "/doctors";
+      router.push(destination);
       router.refresh();
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");

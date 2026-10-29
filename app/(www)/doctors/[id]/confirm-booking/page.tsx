@@ -1,7 +1,7 @@
 "use client"
 
-import { useSearchParams, useParams, useRouter } from "next/navigation"
-import { useState, useEffect, useTransition } from "react"
+import { useSearchParams, useParams } from "next/navigation"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -14,7 +14,6 @@ import { DoctorImage } from "@/components/doctor-image"
 export default function ConfirmBookingPage() {
     const searchParams = useSearchParams()
     const params = useParams()
-    const router = useRouter()
     const doctorId = (params?.id as string) || "doc-1"
     const date = searchParams.get("date") || new Date().toISOString().split("T")[0]
     const time = searchParams.get("time") || "10:00 AM"

@@ -63,7 +63,7 @@ export default function Pricing() {
           <Card className="rounded-2xl border border-gray-700 shadow-xl bg-white w-full max-w-md">
             <div className="w-full bg-[#424242] text-amber-400 text-center py-1 rounded-t-2xl">
               <span className="text-sm sm:text-base font-semibold">
-                DOCTOR'S TOP CHOICE
+                DOCTOR&apos;S TOP CHOICE
               </span>
             </div>
             <CardContent className="p-4 flex flex-col h-full">

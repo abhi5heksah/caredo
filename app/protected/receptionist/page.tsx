@@ -109,7 +109,7 @@ export default function ReceptionistPage() {
   const handlePatientClick = (patient: any) => {
     if (isSelectingPatientIn) {
       setPatientInId(patient.id);
-      toast.info(`Patient ${patient.name} is now in the doctor's cabin.`);
+      toast.info(`Patient ${patient.name} is now in the doctor&apos;s cabin.`);
       setIsSelectingPatientIn(false); // Exit selection mode
     } else {
       setSelectedPatient(patient);
@@ -119,7 +119,7 @@ export default function ReceptionistPage() {
 
   const handlePatientInButtonClick = () => {
     setIsSelectingPatientIn(true);
-    toast.info("Select a patient from 'Today's Patients' to mark them as 'In'.");
+    toast.info("Select a patient from 'Today&apos;s Patients' to mark them as 'In'.");
     // Optionally, you could set the filter to "TODAY" here if it's not already
     setFilter("TODAY");
   };

@@ -213,10 +213,16 @@ function loadDB(): DatabaseSchema {
     try {
         if (fs.existsSync(dbPath)) {
             const content = fs.readFileSync(dbPath, "utf-8");
-            const parsed = JSON.parse(content);
-            const { db: merged, upgraded } = mergeSeedData(parsed);
-            inMemoryDB = merged;
-            if (upgraded) saveDB(inMemoryDB);
+            if (content && content.trim()) {
+                try {
+                    const parsed = JSON.parse(content);
+                    const { db: merged, upgraded } = mergeSeedData(parsed);
+                    inMemoryDB = merged;
+                    if (upgraded) saveDB(inMemoryDB);
+                } catch {
+                    // Fall back cleanly if file is read during concurrent worker writes
+                }
+            }
         } else {
             const dir = path.dirname(dbPath);
             if (!fs.existsSync(dir)) {

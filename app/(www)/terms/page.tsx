@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Shield, Clock, AlertCircle } from "lucide-react"
 
 export default function TermsPage() {
     return (

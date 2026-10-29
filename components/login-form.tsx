@@ -38,8 +38,12 @@ export function LoginForm({
         password,
       });
       if (error) throw error;
-      // Update this route to redirect to an authenticated route. The user already has an active session.
-      router.push("/protected");
+      // Redirect to /doctors page (or to a specific return URL if provided via ?next=)
+      const destination =
+        (typeof window !== "undefined" &&
+          new URLSearchParams(window.location.search).get("next")) ||
+        "/doctors";
+      router.push(destination);
       router.refresh();
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");

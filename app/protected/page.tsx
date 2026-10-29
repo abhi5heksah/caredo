@@ -1,13 +1,12 @@
 import { createClient } from "@/lib/supabase/server";
 import { db } from "@/lib/db";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { LogoutButton } from "@/components/logout-button";
 import {
     User,
     Calendar,
     Clock,
-    MapPin,
     Stethoscope,
     CheckCircle2,
     PlusCircle,

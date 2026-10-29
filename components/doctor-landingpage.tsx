@@ -22,7 +22,6 @@ export default function DoctorLandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
 
   // Handles navigation for both Login button and Register Now button
@@ -87,8 +86,7 @@ export default function DoctorLandingPage() {
 
           <div className="mt-8 sm:mt-12">
             <p className="italic text-gray-600 text-sm lg:text-white">
-              "Be the part of this mission to save time and life of every
-              Indians"
+              &quot;Be the part of this mission to save time and life of every Indians&quot;
             </p>
           </div>
         </div>

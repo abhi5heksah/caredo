@@ -105,7 +105,7 @@ export function HeroSection() {
                             />
                             <div>
                                 <h3 className="text-2xl font-bold text-gray-800">
-                                    "One <span className="text-teal-600">INDIA</span>,
+                                    &quot;One <span className="text-teal-600">INDIA</span>,
                                 </h3>
                                 <h3 className="text-2xl font-bold text-gray-800">
                                     All Doctors, One <span className="text-teal-600">Caredo</span>

@@ -5,6 +5,7 @@ import {fetchAllDoctorProfiles} from "@/lib/apis/api";
 import {useQuery} from "@tanstack/react-query";
 import {useSearchParams} from "next/navigation";
 import {useMemo} from "react";
+import Link from "next/link";
 import { SPECIALTIES, getSpecialtyName } from "@/lib/specialties";
 
 export function DoctorGrid() {
@@ -82,9 +83,9 @@ export function DoctorGrid() {
                     <div className="col-span-full text-center py-12 bg-white rounded-xl border border-gray-200 p-8 space-y-3">
                         <p className="text-base font-semibold text-gray-700">No doctors found matching your criteria</p>
                         <p className="text-sm text-gray-500">Try searching for &quot;Dentist&quot;, &quot;Cardiologist&quot;, or clear your search.</p>
-                        <a href="/doctors" className="inline-block mt-2 text-sm text-teal-600 font-semibold hover:underline">
+                        <Link href="/doctors" className="inline-block mt-2 text-sm text-teal-600 font-semibold hover:underline">
                             View all doctors
-                        </a>
+                        </Link>
                     </div>
                 ) : (
                     filteredDoctors.map((doctor: any) => (
